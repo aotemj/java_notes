@@ -3,6 +3,7 @@ package com.test02;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+// 通过反射获取构造方法
 public class ReflectDemo3 {
     public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Class<?> c1 = Class.forName("com.test01.Student");
