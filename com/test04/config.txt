@@ -1,0 +1,2 @@
+className=com.test04.Student
+method=study
