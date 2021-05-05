@@ -1,3 +1,5 @@
+package com.test04;
+
 //  ASCII : American Standard Code for Information Interchange
 //  美国信息交换标准表
 //  unicode 表： 万国码表（所有国家的文字对应）

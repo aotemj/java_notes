@@ -1,3 +1,5 @@
+package com.test04;
+
 public class Demo03VariableNotice {
   public static void main(String[] args){
     // 注意事项1： 变量必须先赋值再使用否则报错：

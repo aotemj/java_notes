@@ -1,3 +1,5 @@
+package com.test04;
+
 public class Demo04DataType{
   public static void main(String[] args){
     // 数据类型转换

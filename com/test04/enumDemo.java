@@ -1,3 +1,5 @@
+package com.test04;
+
 class FreshJuice {
 	enum FreshJuiceSize {SAMLL,MEDIUM,LARGE}
 	FreshJuiceSize size;

@@ -1,3 +1,5 @@
+package com.test04;
+
 public class Demo05DataType {
   public static void main(String[] args){
     // 强制类型转换
@@ -32,7 +34,6 @@ public class Demo05DataType {
 
     char num9 = 'A';
     int num10 = num9 +1; 
-    System.out.println(num10); // 66 
-    
+    System.out.println(num10); // 66
   }
 }

@@ -1,3 +1,5 @@
+package com.test04;
+
 public class Demo07Operator {
   public static void main (String[] args){
     /*

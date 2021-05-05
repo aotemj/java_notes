@@ -1,3 +1,5 @@
+package com.test04;
+
 public class Demo02Variable {
   public static void main(String[] args){
     // int 变量

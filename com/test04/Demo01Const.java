@@ -1,3 +1,5 @@
+package com.test04;
+
 public class Demo01Const {
   public static void main (String[] args){
     // 字符串常量

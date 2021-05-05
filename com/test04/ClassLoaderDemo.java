@@ -1,3 +1,5 @@
+package com.test04;
+
 //  类加载器
 public class ClassLoaderDemo {
     public static void main(String args[]) {
