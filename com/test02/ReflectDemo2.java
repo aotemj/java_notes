@@ -1,7 +1,5 @@
 package com.test02;
 
-import com.sun.corba.se.impl.orbutil.concurrent.Sync;
-
 import java.lang.reflect.Constructor;
 
 public class ReflectDemo2 {

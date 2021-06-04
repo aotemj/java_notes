@@ -1,5 +1,4 @@
 import com.test03.MyService;
-import com.test03.impl.Class1;
 import com.test03.impl.Class2;
 
 module Module1 {
