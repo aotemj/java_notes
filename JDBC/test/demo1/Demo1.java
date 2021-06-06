@@ -7,7 +7,7 @@ public class Demo1 {
 
     //     驱动名，数据库url
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/db4";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/db4"; // 本机可省略为： "jdbc:mysql:///db4"
 
     static final String USER = "root";
     static final String PASSWORD = "1234";
