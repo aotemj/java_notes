@@ -12,6 +12,7 @@ public class Demo3 {
     static String USER = "root";
     static String PASSWORD = "1234";
 
+    //    插入数据
     @Test
     public void Demo1() throws ClassNotFoundException {
         Connection conn = null;
@@ -41,6 +42,43 @@ public class Demo3 {
                     e.printStackTrace();
                 }
 
+                st = null;
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                conn = null;
+            }
+        }
+    }
+
+    //    修改数据
+    @Test
+    public void Demo2() {
+        Connection conn = null;
+        Statement st = null;
+        try {
+            Class.forName(JDBC_DRIVER);
+
+            conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            st = conn.createStatement();
+            String sql = "update jdbc_test set nickname = '张三1' where id = 4";
+            int i = st.executeUpdate(sql);
+            if (i > 0) {
+                System.out.println("数据修改完成");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (st != null) {
+                try {
+                    st.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 st = null;
             }
             if (conn != null) {
