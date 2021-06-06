@@ -1,10 +1,10 @@
-package JDBC.test.demo1;
+package JDBC.test.demo2;
 
 import java.sql.*;
 
 public class Demo2 {
     static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static String DB_URL = "jdbc:mysql://localhost:3306/db4?SSL=false";
+    static String DB_URL = "jdbc:mysql://localhost:3306/db4";
     static String USER = "root";
     static String PASSWORD = "1234";
 
@@ -44,6 +44,7 @@ public class Demo2 {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                rs = null;
             }
             if (st != null) {
                 try {
@@ -51,6 +52,7 @@ public class Demo2 {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                st = null;
             }
             if (conn != null) {
                 try {
@@ -58,6 +60,8 @@ public class Demo2 {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                // 使 java内存快速释放
+                conn = null;
             }
         }
     }
