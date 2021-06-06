@@ -2,8 +2,10 @@ package JDBC.test.demo3;
 
 import org.junit.Test;
 
+import javax.swing.plaf.nimbus.State;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Demo3 {
@@ -88,6 +90,89 @@ public class Demo3 {
                     e.printStackTrace();
                 }
                 conn = null;
+            }
+        }
+    }
+
+    //     删除数据
+    @Test
+    public void Demo3() {
+        Connection conn = null;
+        Statement st = null;
+        try {
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            st = conn.createStatement();
+            String sql = "delete from jdbc_test where id = 4";
+            int i = st.executeUpdate(sql);
+            if (i > 0) {
+                System.out.println("删除数据成功");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (st != null) {
+                try {
+                    st.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                st = null;
+            }
+
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    //      查询数据（单条）
+    @Test
+    public void Demo4() {
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            Class.forName(JDBC_DRIVER);
+            conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+            st = conn.createStatement();
+            String sql = "select * from jdbc_test where id = 1";
+            rs = st.executeQuery(sql);
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String username = rs.getString("username");
+                String nickname = rs.getString("nickname");
+                int age = rs.getInt("age");
+                System.out.println("ID: " + id + " username: " + username + " nickname:" + nickname + " age:" + age);
+                System.out.println("查询成功");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (st != null) {
+                try {
+                    st.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
