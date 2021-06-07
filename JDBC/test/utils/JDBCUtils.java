@@ -1,6 +1,10 @@
 package JDBC.test.utils;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
+import java.util.Properties;
 
 public class JDBCUtils {
     private static final String JDBC_DRIVER;
@@ -8,11 +12,21 @@ public class JDBCUtils {
     private static final String USERNAME;
     private static final String PASSWORD;
 
+
     static {
-        JDBC_DRIVER = "com.mysql.jdbc.Driver";
-        DB_URL = "jdbc:mysql:///db4";
-        USERNAME = "root";
-        PASSWORD = "1234";
+        Properties prop = new Properties();
+        try {
+            FileReader fileReader = new FileReader("JDBC/test/utils/db.properties");
+            prop.load(fileReader);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JDBC_DRIVER = prop.getProperty("JDBC_DRIVER");
+        DB_URL = prop.getProperty("DB_URL");
+        USERNAME = prop.getProperty("USER");
+        PASSWORD = prop.getProperty("PASSWORD");
     }
 
     public static void loadDriver() {
