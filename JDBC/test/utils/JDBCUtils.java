@@ -1,12 +1,12 @@
-package JDBC.test.JDBCUtils;
+package JDBC.test.utils;
 
 import java.sql.*;
 
 public class JDBCUtils {
-    static String JDBC_DRIVER;
-    static String DB_URL;
-    static String USERNAME;
-    static String PASSWORD;
+    private static final String JDBC_DRIVER;
+    private static final String DB_URL;
+    private static final String USERNAME;
+    private static final String PASSWORD;
 
     static {
         JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -15,13 +15,23 @@ public class JDBCUtils {
         PASSWORD = "1234";
     }
 
-    public static void loadDriver() throws ClassNotFoundException {
-        Class.forName(JDBC_DRIVER);
+    public static void loadDriver() {
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
-        loadDriver();
-        Connection connection = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+    public static Connection getConnection() {
+        Connection connection = null;
+        try {
+            loadDriver();
+            connection = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return connection;
     }
 
