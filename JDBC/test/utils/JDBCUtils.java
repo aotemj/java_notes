@@ -70,6 +70,36 @@ public class JDBCUtils {
         }
     }
 
+    public static void release(ResultSet rs, PreparedStatement st, Connection conn) {
+        if (rs != null) {
+            try {
+                rs.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            rs = null;
+        }
+        if (st != null) {
+            try {
+                st.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            st = null;
+        }
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            conn = null;
+        }
+    }
+
     public static void release(ResultSet rs, Statement st, Connection conn) {
         if (rs != null) {
             try {
