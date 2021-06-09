@@ -1,4 +1,4 @@
-package JDBC.test.demo5;
+package JDBC.test.sql_injection;
 
 //SQL 注入演示
 public class demo5 {

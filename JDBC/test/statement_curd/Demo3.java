@@ -1,8 +1,7 @@
-package JDBC.test.demo3;
+package JDBC.test.statement_curd;
 
 import org.junit.Test;
 
-import javax.swing.plaf.nimbus.State;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;

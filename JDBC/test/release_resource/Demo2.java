@@ -1,4 +1,4 @@
-package JDBC.test.demo2;
+package JDBC.test.release_resource;
 
 import java.sql.*;
 
