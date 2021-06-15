@@ -41,4 +41,34 @@ public class C3P0Demo {
             JDBCUtils.release(rs, ps, conn);
         }
     }
+
+    // 配置文件配置（c3p0-config.xml）
+    @Test
+    public void demo2() {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            //            c3p0 会自动去当前项目中寻找c3p0-config.xml
+            ComboPooledDataSource dataSource = new ComboPooledDataSource();
+
+            conn = dataSource.getConnection();
+            String sql = "select * from jdbc_transaction_test";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String money = rs.getString("money");
+                System.out.print("ID: " + id);
+                System.out.print(" name: " + name);
+                System.out.print(" money: " + money);
+                System.out.println("");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.release(rs, ps, conn);
+        }
+    }
 }
