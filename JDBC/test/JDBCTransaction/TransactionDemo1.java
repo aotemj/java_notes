@@ -20,7 +20,7 @@ public class TransactionDemo1 {
             ppst = conn.prepareStatement(sql);
             ppst.setDouble(1, 100);
             ppst.setInt(2, 1);
-            int i = 2 / 0;
+//            int i = 2 / 0;
             ppst.executeUpdate();
             ppst.setDouble(1, -100);
             ppst.setInt(2, 2);

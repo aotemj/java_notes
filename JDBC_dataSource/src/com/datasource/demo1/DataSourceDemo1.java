@@ -35,23 +35,24 @@ public class DataSourceDemo1 {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                rs = null;
-            }
-            if (ppst != null) {
-                try {
-                    ppst.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                ppst = null;
-            }
-            dataSource.addBack(conn);
+            JDBCUtils.release(rs, ppst, conn);
+//            if (rs != null) {
+//                try {
+//                    rs.close();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                rs = null;
+//            }
+//            if (ppst != null) {
+//                try {
+//                    ppst.close();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                ppst = null;
+//            }
+//            dataSource.addBack(conn);
         }
     }
 }

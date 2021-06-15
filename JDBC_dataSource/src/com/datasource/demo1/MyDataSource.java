@@ -21,7 +21,10 @@ public class MyDataSource implements DataSource {
     // 获取链接方法
     @Override
     public Connection getConnection() throws SQLException {
-        return connList.remove(0);
+        Connection conn = connList.remove(0);
+        // 增强链接方法
+        MyConnectionWrapper mcw = new MyConnectionWrapper(conn, connList);
+        return mcw;
     }
 
     @Override
@@ -61,10 +64,10 @@ public class MyDataSource implements DataSource {
         }
     }
 
-    // 添加回收连接池方法
-    public void addBack(Connection conn) {
-        connList.add(conn);
-    }
+//    // 添加回收连接池方法
+//    public void addBack(Connection conn) {
+//        connList.add(conn);
+//    }
 
     @Override
     public <T> T unwrap(Class<T> iface) throws SQLException {
