@@ -75,6 +75,7 @@ public class DruidDemo {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            JDBCUtils.release(rs, ps, conn);
         }
     }
 }
