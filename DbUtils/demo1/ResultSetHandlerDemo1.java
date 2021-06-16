@@ -71,4 +71,30 @@ public class ResultSetHandlerDemo1 {
             System.out.println(map);
         }
     }
+
+    //  ColumnListHandler(单个列查询结果handler)
+    @Test
+    public void demo7() throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils2.getDataSource());
+        List<Object> list = queryRunner.query("select name from dbutils_test where id = ?", new ColumnListHandler("name"), 2);
+        for (Object o : list) {
+            System.out.println(o);
+        }
+    }
+
+    // 将当个查询的值进行封装
+    @Test
+    public void demo8() throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils2.getDataSource());
+        Object query = queryRunner.query("select Count(*) from dbutils_test", new ScalarHandler());
+        System.out.println(query);
+    }
+
+    //   KeyedHandler: 将多条查询结果放到Map中，Map的key 可以指定， value 为查询结果
+    @Test
+    public void demo9() throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils2.getDataSource());
+        Map<Object, Map<String, Object>> name = queryRunner.query("select * from dbutils_test", new KeyedHandler("name"));
+        System.out.println(name); // {zhangsan={money=200, name=zhangsan, id=3}}
+    }
 }
