@@ -17,7 +17,7 @@ public class JDBCUtils2 {
         return dataSource.getConnection();
     }
 
-    public DataSource getDataSource() {
+    public static DataSource getDataSource() {
         return dataSource;
     }
 
