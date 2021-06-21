@@ -6,7 +6,7 @@ import java.io.IOException;
 public class MyServlet implements Servlet {
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
-
+        System.out.println("servlet init ... ");
     }
 
     @Override
@@ -26,6 +26,6 @@ public class MyServlet implements Servlet {
 
     @Override
     public void destroy() {
-
+        System.out.println("servlet destory ... ");
     }
 }
