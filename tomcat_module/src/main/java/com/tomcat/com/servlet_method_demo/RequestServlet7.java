@@ -11,6 +11,9 @@ public class RequestServlet7 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("Servlet7被触发");
+        // 存储需要共享的数据
+        request.setAttribute("name", "servlet7Name");
+        // 转发请求
         request.getRequestDispatcher("RequestServlet8").forward(request, response);
     }
 

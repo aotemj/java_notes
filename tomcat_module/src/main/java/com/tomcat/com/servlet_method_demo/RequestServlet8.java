@@ -11,6 +11,10 @@ public class RequestServlet8 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("触发ServletDemo8...");
+        // 获取从 servlet7中传递过来的数据
+        Object name = request.getAttribute("name");
+        System.out.println("由Servlet7 传递的数据(name)： " + name);
+        request.removeAttribute("name");
     }
 
     @Override
