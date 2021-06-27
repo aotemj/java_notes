@@ -27,13 +27,15 @@ public class LoginServlet extends HttpServlet {
         System.out.println(username);
         System.out.println(password);
         UserDao ud = new UserDao();
-//        UserDao ud = new UserDao();
 
-//        User loginUser = ud.login(user);
-//        if (loginUser == null) {
-//            System.out.println("登录失败");
-//        } else {
-//            System.out.println("登录成功");
-//        }
+        User loginUser = ud.login(user);
+        if (loginUser == null) {
+            System.out.println("登录失败");
+            request.getRequestDispatcher("/failServlet").forward(request, response);
+        } else {
+            System.out.println("登录成功");
+            request.setAttribute("user", loginUser);
+            request.getRequestDispatcher("/successServlet").forward(request, response);
+        }
     }
 }
