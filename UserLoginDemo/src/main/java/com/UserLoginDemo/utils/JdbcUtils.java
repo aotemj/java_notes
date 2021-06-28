@@ -6,6 +6,7 @@ import javax.sql.DataSource;
 import javax.xml.crypto.Data;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -14,9 +15,10 @@ public class JdbcUtils {
     private static DataSource dataSource;
 
     static {
-        Properties properties = new Properties();
         try {
-            properties.load(new FileReader("src/main/java/com/UserLoginDemo/utils/druid.properties"));
+            Properties properties = new Properties();
+            InputStream is = JdbcUtils.class.getClassLoader().getResourceAsStream("druid.properties");
+            properties.load(is);
             dataSource = DruidDataSourceFactory.createDataSource(properties);
         } catch (Exception e) {
             e.printStackTrace();
