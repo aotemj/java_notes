@@ -26,6 +26,7 @@ public class ServletCookieDemo3 extends HttpServlet {
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
 
+        boolean flag=  false;
         Cookie[] cookies = request.getCookies();
         PrintWriter writer = response.getWriter();
 
@@ -35,11 +36,15 @@ public class ServletCookieDemo3 extends HttpServlet {
             if (name.equals("visittime")) {
                 writer.write("欢迎回来，您上次访问时间为： " + ck.getValue());
                 updateCookie(response);
+                flag = true;
+                break;
             }
         }
-        writer.write("您好，欢迎您首次访问");
-        updateCookie(response);
 
+        if(!flag){
+            writer.write("您好，欢迎您首次访问");
+            updateCookie(response);
+        }
     }
     public void updateCookie (HttpServletResponse response){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
