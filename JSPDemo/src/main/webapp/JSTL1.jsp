@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%--
   Created by IntelliJ IDEA.
   User: lovixk
   Date: 2021/7/17
@@ -38,7 +39,7 @@
 %>
 <c:if test="${number %2 == 0}">
     ${requestScope.number} 为偶数
-</c:if>
+</c:if>¡
 <c:if test="${number %2 != 0}">
     ${requestScope.number} 为奇数
 </c:if>
