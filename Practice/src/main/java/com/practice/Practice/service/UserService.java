@@ -13,4 +13,10 @@ public interface UserService {
      * @return
      */
     public List<User> findAll();
+
+    /**
+     * 根据用户名和密码查询用户
+     * @return
+     */
+    public User findUserByUsernameAndPassword (String username,String password);
 }

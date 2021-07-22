@@ -18,6 +18,7 @@
 </head>
 <body>
 <div align="center">
+    ${requestScope.login_msg}
     <a
             href="${pageContext.request.contextPath}/userListServlet" style="text-decoration:none;font-size:33px">查询所有用户信息
     </a>
