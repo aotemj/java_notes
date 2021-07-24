@@ -3,6 +3,8 @@ package com.practice.Practice.web;
 import com.practice.Practice.dao.UserDao;
 import com.practice.Practice.dao.impl.UserDaoImpl;
 import com.practice.Practice.domain.User;
+import com.practice.Practice.service.UserService;
+import com.practice.Practice.service.impl.UserServiceImpl;
 import com.practice.Practice.util.JDBCUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -35,8 +37,8 @@ public class LoginServlet extends HttpServlet {
             System.out.println(username);
             System.out.println(password);
 //            验证登录操作
-            UserDao userDao = new UserDaoImpl();
-            User user = userDao.findUserByUsernameAndPassword(username, password);
+            UserService service = new UserServiceImpl();
+            User user = service.findUserByUsernameAndPassword(username, password);
             if (user != null) {
 //                登录成功
                 request.setAttribute("login_msg", username + "欢迎您");

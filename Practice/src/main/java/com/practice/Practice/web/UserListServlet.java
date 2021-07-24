@@ -19,6 +19,7 @@ public class UserListServlet extends HttpServlet {
         List<User> users = service.findAll();
 //        2. 将 List 存入 request 域
         request.setAttribute("users", users);
+        System.out.println(users);
 //        3. 转发到 list.jsp
         request.getRequestDispatcher("list.jsp").forward(request, response);
     }
