@@ -24,6 +24,7 @@ public interface UserService {
 
     /**
      * 添加用户
+     *
      * @param user
      * @return
      */
@@ -31,8 +32,22 @@ public interface UserService {
 
     /**
      * 删除用户
+     *
      * @param id 待删除用户id
      * @return
      */
-    public boolean delUser (int id);
+    public boolean delUser(int id);
+
+    /**
+     * 更新用户信息
+     *
+     * @param user
+     * @return
+     */
+    public boolean updateUser(User user);
+
+    /**
+     * 通过id获取用户信息
+     */
+    public User getUserById(int id);
 }

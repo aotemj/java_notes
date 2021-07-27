@@ -33,5 +33,15 @@ public class UserServiceImpl implements UserService {
         return userDao.delUser(id);
     }
 
+    @Override
+    public boolean updateUser(User user) {
+        return userDao.updateUser(user);
+    }
+
+    @Override
+    public User getUserById(int id) {
+        return userDao.getUserById(id);
+    }
+
 
 }
