@@ -33,9 +33,10 @@ public class UpdateUserServlet extends HttpServlet {
 
             if (success) {
                 request.setAttribute("update_msg", "更新用户信息成功");
-                List<User> users = service.findAll();
-                request.setAttribute("users", users);
-                request.getRequestDispatcher("list.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath()+"/userListServlet");
+//                List<User> users = service.findAll();
+//                request.setAttribute("users", users);
+//                request.getRequestDispatcher("list.jsp").forward(request, response);
             } else {
                 request.setAttribute("update_msg", "更新用户信息失败");
             }
