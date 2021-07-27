@@ -43,5 +43,10 @@ public class UserServiceImpl implements UserService {
         return userDao.getUserById(id);
     }
 
-
+    @Override
+    public void delUsers(String[] ids) {
+        for (String id : ids) {
+            userDao.delUser(Integer.parseInt(id));
+        }
+    }
 }

@@ -39,16 +39,16 @@
         <form class="form-inline">
             <div class="form-group">
                 <label for="exampleInputName2">姓名</label>
-                <input type="text" class="form-control" id="exampleInputName2" >
+                <input type="text" class="form-control" id="exampleInputName2">
             </div>
             <div class="form-group">
                 <label for="exampleInputName3">籍贯</label>
-                <input type="text" class="form-control" id="exampleInputName3" >
+                <input type="text" class="form-control" id="exampleInputName3">
             </div>
 
             <div class="form-group">
                 <label for="exampleInputEmail2">邮箱</label>
-                <input type="email" class="form-control" id="exampleInputEmail2"  >
+                <input type="email" class="form-control" id="exampleInputEmail2">
             </div>
             <button type="submit" class="btn btn-default">查询</button>
         </form>
@@ -58,40 +58,47 @@
     <div style="float: right;margin: 5px;">
 
         <a class="btn btn-primary" href="add.jsp">添加联系人</a>
-        <a class="btn btn-primary" href="add.html">删除选中</a>
+        <a class="btn btn-primary" href="javascript:deleteChecked()">删除选中</a>
 
     </div>
 
-    <table border="1" class="table table-bordered table-hover">
-        <tr class="success">
-            <th><input type="checkbox"></th>
-            <th>编号</th>
-            <th>姓名</th>
-            <th>性别</th>
-            <th>年龄</th>
-            <th>籍贯</th>
-            <th>QQ</th>
-            <th>邮箱</th>
-            <th>操作</th>
-        </tr>
-
-        <c:forEach items="${users}" var="user" varStatus="s">
-            <tr>
-                <td><input type="checkbox"></td>
-                <td>${s.count}</td>
-                <td>${user.name}</td>
-                <td>${user.gender}</td>
-                <td>${user.age}</td>
-                <td>${user.address}</td>
-                <td>${user.qq}</td>
-                <td>${user.email}</td>
-                <td><a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/findUserServlet?id=${user.id}">修改</a>&nbsp;<a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/delUserServlet?id=${user.id}">删除</a></td>
+    <form action="${pageContext.request.contextPath}/delCheckUserServlet" id="form">
+        <table border="1" class="table table-bordered table-hover">
+            <tr class="success">
+                <th><input type="checkbox"></th>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>籍贯</th>
+                <th>QQ</th>
+                <th>邮箱</th>
+                <th>操作</th>
             </tr>
 
-        </c:forEach>
+            <c:forEach items="${users}" var="user" varStatus="s">
+                <tr>
+                    <td>
+                        <input type="checkbox" name="uid" value="${user.id}">
+                    </td>
+                    <td>${s.count}</td>
+                    <td>${user.name}</td>
+                    <td>${user.gender}</td>
+                    <td>${user.age}</td>
+                    <td>${user.address}</td>
+                    <td>${user.qq}</td>
+                    <td>${user.email}</td>
+                    <td><a class="btn btn-default btn-sm"
+                           href="${pageContext.request.contextPath}/findUserServlet?id=${user.id}">修改</a>&nbsp;<a
+                            class="btn btn-default btn-sm"
+                            href="${pageContext.request.contextPath}/delUserServlet?id=${user.id}">删除</a></td>
+                </tr>
+
+            </c:forEach>
 
 
-    </table>
+        </table>
+    </form>
     <div>
         <nav aria-label="Page navigation">
             <ul class="pagination">
@@ -122,7 +129,13 @@
 
 
 </div>
+<script>
+    function deleteChecked() {
+        document.querySelector("#form").submit()
+    }
+    window.onload = function () {
 
-
+    }
+</script>
 </body>
 </html>

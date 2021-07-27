@@ -50,4 +50,11 @@ public interface UserService {
      * 通过id获取用户信息
      */
     public User getUserById(int id);
+
+    /**
+     * 批量删除用户
+     *
+     * @param ids
+     */
+    public void delUsers(String[] ids);
 }
