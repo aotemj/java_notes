@@ -17,5 +17,8 @@ public interface UserDao {
     public boolean delUser(int id);
 
     public boolean updateUser(User user);
-    public User getUserById (int id);
+
+    public User getUserById(int id);
+
+    public List<User> searchByCondition(String name, String address, String email);
 }

@@ -49,4 +49,9 @@ public class UserServiceImpl implements UserService {
             userDao.delUser(Integer.parseInt(id));
         }
     }
+
+    @Override
+    public List<User> searchByCondition(String name, String address,String email) {
+        return userDao.searchByCondition(name,address,email);
+    }
 }

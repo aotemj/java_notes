@@ -57,4 +57,14 @@ public interface UserService {
      * @param ids
      */
     public void delUsers(String[] ids);
+
+    /**
+     * 根据条件查询信息
+     *
+     * @param name
+     * @param address
+     * @param email
+     * @return
+     */
+    public List<User> searchByCondition(String name, String address, String email);
 }

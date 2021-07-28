@@ -5,6 +5,7 @@ import com.practice.Practice.domain.User;
 import com.practice.Practice.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean updateUser(User user) {
         String sql = "update user set name = ?,gender =?,age =?,address =?,qq=?,email=? where id = ?";
-        int number = template.update(sql, user.getName(), user.getGender(), user.getAge(), user.getAddress(), user.getQq(), user.getEmail(),user.getId());
+        int number = template.update(sql, user.getName(), user.getGender(), user.getAge(), user.getAddress(), user.getQq(), user.getEmail(), user.getId());
         if (number > 0) {
             return true;
         }
@@ -70,5 +71,17 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public List<User> searchByCondition(String name, String address, String email) {
+        String sql = "select * from user where name like ? and address like ? and email like ?";
+        try {
+            return template.query(sql, new BeanPropertyRowMapper<User>(User.class), name, address, email);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }
