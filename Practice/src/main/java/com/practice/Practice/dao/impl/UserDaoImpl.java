@@ -75,6 +75,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> searchByCondition(String name, String address, String email) {
+//        TODO 待优化项
         String sql = "select * from user where name like ? and address like ? and email like ?";
         try {
             return template.query(sql, new BeanPropertyRowMapper<User>(User.class), name, address, email);
