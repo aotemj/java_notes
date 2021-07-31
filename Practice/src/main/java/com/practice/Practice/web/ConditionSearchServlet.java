@@ -9,6 +9,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(value = "/conditionSearchServlet")
 public class ConditionSearchServlet extends HttpServlet {
@@ -21,12 +22,12 @@ public class ConditionSearchServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("name");
-        String address = request.getParameter("address");
-        String email = request.getParameter("email");
-
-        List<User> users = service.searchByCondition(name, address, email);
-        request.setAttribute("users",users);
-        request.getRequestDispatcher("list.jsp").forward(request,response);
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        List<User> users = service.searchByCondition(parameterMap);
+        for(User user: users){
+            System.out.println(user.getName());
+        }
+//        request.setAttribute("users",users);
+//        request.getRequestDispatcher("list.jsp").forward(request,response);
     }
 }

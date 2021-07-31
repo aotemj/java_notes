@@ -3,6 +3,7 @@ package com.practice.Practice.dao;
 import com.practice.Practice.domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户操作的DAO
@@ -20,5 +21,5 @@ public interface UserDao {
 
     public User getUserById(int id);
 
-    public List<User> searchByCondition(String name, String address, String email);
+    public List<User> searchByCondition(Map<String, String[]> parameterMap);
 }

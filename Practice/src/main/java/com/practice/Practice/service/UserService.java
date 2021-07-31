@@ -3,6 +3,7 @@ package com.practice.Practice.service;
 import com.practice.Practice.domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 用户管理的业务接口
@@ -60,11 +61,7 @@ public interface UserService {
 
     /**
      * 根据条件查询信息
-     *
-     * @param name
-     * @param address
-     * @param email
      * @return
      */
-    public List<User> searchByCondition(String name, String address, String email);
+    public List<User> searchByCondition(Map<String, String[]> parameterMap);
 }

@@ -6,6 +6,7 @@ import com.practice.Practice.domain.User;
 import com.practice.Practice.service.UserService;
 
 import java.util.List;
+import java.util.Map;
 
 public class UserServiceImpl implements UserService {
     UserDao userDao = new UserDaoImpl();
@@ -51,7 +52,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> searchByCondition(String name, String address,String email) {
-        return userDao.searchByCondition(name,address,email);
+    public List<User> searchByCondition(Map<String, String[]> parameterMap) {
+        return userDao.searchByCondition(parameterMap);
     }
 }

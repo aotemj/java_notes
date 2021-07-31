@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapperResultSetExtractor;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class UserDaoImpl implements UserDao {
     private final JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
@@ -74,15 +76,29 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> searchByCondition(String name, String address, String email) {
+    public List<User> searchByCondition(Map<String, String[]> parameterMap) {
 //        TODO 待优化项
-        String sql = "select * from user where name like ? and address like ? and email like ?";
+        String sql = "select * from user where 1=1 ";
+
+        StringBuilder sb = new StringBuilder(sql);
+
+        Set<String> keys = parameterMap.keySet();
+
+        for (String key : keys) {
+            String[] values = parameterMap.get(key);
+//            System.out.println(values);
+            for(String value: values){
+                if(!"".equals(value)){
+                    sb.append(" and "+key+" like "+value+"%");
+                }
+            }
+        }
+        System.out.println("sql = "+sb);
         try {
-            return template.query(sql, new BeanPropertyRowMapper<User>(User.class), name, address, email);
+            return template.query(sql, new BeanPropertyRowMapper<User>(User.class));
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-
     }
 }
