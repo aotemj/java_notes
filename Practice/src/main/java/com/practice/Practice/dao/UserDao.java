@@ -1,5 +1,6 @@
 package com.practice.Practice.dao;
 
+import com.practice.Practice.domain.PageBean;
 import com.practice.Practice.domain.User;
 
 import java.util.List;
@@ -22,4 +23,8 @@ public interface UserDao {
     public User getUserById(int id);
 
     public List<User> searchByCondition(Map<String, String[]> parameterMap);
+
+    public PageBean<User> findUsersByPage(int currentPage, int rows);
+
+    public int findTotalCount();
 }

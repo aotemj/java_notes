@@ -1,5 +1,6 @@
 package com.practice.Practice.service;
 
+import com.practice.Practice.domain.PageBean;
 import com.practice.Practice.domain.User;
 
 import java.util.List;
@@ -58,6 +59,13 @@ public interface UserService {
      * @param ids
      */
     public void delUsers(String[] ids);
+
+    /**
+     * 分页获取用户
+     * @param currentPage
+     * @param rows
+     */
+    public PageBean<User> getUserByPages(int currentPage, int rows);
 
     /**
      * 根据条件查询信息

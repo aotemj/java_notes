@@ -2,6 +2,7 @@ package com.practice.Practice.service.impl;
 
 import com.practice.Practice.dao.UserDao;
 import com.practice.Practice.dao.impl.UserDaoImpl;
+import com.practice.Practice.domain.PageBean;
 import com.practice.Practice.domain.User;
 import com.practice.Practice.service.UserService;
 
@@ -49,6 +50,11 @@ public class UserServiceImpl implements UserService {
         for (String id : ids) {
             userDao.delUser(Integer.parseInt(id));
         }
+    }
+
+    @Override
+    public PageBean<User> getUserByPages(int currentPage, int rows) {
+        return userDao.findUsersByPage(currentPage,rows);
     }
 
     @Override
