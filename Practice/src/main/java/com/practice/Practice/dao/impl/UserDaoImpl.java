@@ -125,7 +125,7 @@ public class UserDaoImpl implements UserDao {
         List<User> list = this.findByPage(start, rows);
         pb.setList(list);
 //        计算总页码
-        int totalPage = (totalCount / rows == 0) ? (totalCount / rows) : (totalCount % rows + 1);
+        int totalPage = ((totalCount % rows) == 0) ? (totalCount / rows) : (totalCount % rows + 1);
         pb.setTotalPage(totalPage);
         return pb;
     }

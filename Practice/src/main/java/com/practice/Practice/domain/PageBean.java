@@ -7,6 +7,18 @@ public class PageBean<T> {
     private int totalCount;
     //    总页数
     private int totalPage;
+
+    @Override
+    public String toString() {
+        return "PageBean{" +
+                "totalCount=" + totalCount +
+                ", totalPage=" + totalPage +
+                ", currentPage=" + currentPage +
+                ", list=" + list +
+                ", rows=" + rows +
+                '}';
+    }
+
     //    当前页
     private int currentPage;
     //    每页的数据
