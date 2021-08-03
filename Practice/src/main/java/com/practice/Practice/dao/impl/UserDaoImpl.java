@@ -110,12 +110,12 @@ public class UserDaoImpl implements UserDao {
      * @return
      */
     @Override
-    public PageBean<User> findUsersByPage(int currentPage, int rows) {
+    public PageBean<User> findUsersByPage(int currentPage) {
 //        创建空的PageBean 对象
         PageBean pb = new PageBean();
+        int rows = pb.getRows();
 //        设置当前页面属性和rows属性
         pb.setCurrentPage(currentPage);
-        pb.setRows(rows);
 //        调用dao查询totalCount 总记录数 dao.findTotalCount();
         int totalCount = this.findTotalCount();
         pb.setTotalCount(totalCount);
@@ -125,7 +125,7 @@ public class UserDaoImpl implements UserDao {
         List<User> list = this.findByPage(start, rows);
         pb.setList(list);
 //        计算总页码
-        int totalPage = ((totalCount % rows) == 0) ? (totalCount / rows) : (totalCount % rows + 1);
+        int totalPage = ((totalCount % rows) == 0) ? (totalCount / rows) : (int) (totalCount / rows) + 1;
         pb.setTotalPage(totalPage);
         return pb;
     }

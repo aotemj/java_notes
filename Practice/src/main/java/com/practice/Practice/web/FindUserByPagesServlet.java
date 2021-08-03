@@ -28,10 +28,8 @@ public class FindUserByPagesServlet extends HttpServlet {
 //        接受请求参数 currentPage, rows
 //        当前页码
         int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-//        每页显示的条数
-        int rows = Integer.parseInt(request.getParameter("rows"));
         //调用Service查询PageBean
-        PageBean<User> pb = service.getUserByPages(currentPage, rows);
+        PageBean<User> pb = service.getUserByPages(currentPage);
         System.out.println(pb);
         //将PageBean 存入 request
         request.setAttribute("pageBean", pb);

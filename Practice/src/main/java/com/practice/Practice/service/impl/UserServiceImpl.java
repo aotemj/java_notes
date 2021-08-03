@@ -53,8 +53,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public PageBean<User> getUserByPages(int currentPage, int rows) {
-        return userDao.findUsersByPage(currentPage,rows);
+    public PageBean<User> getUserByPages(int currentPage) {
+        return userDao.findUsersByPage(currentPage);
     }
 
     @Override

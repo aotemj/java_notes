@@ -76,7 +76,7 @@
                 <th>操作</th>
             </tr>
 
-            <c:forEach items="${users}" var="user" varStatus="s">
+            <c:forEach items="${pageBean.list}" var="user" varStatus="s">
                 <tr>
                     <td>
                         <input type="checkbox" name="uid" value="${user.id}">
@@ -107,14 +107,17 @@
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <c:forEach items="${pageBean.totalPage}" var="i" begin="0" end="${pageBean.totalPage}" >
-                    <li><a href="#">${i}</a></li>
+                <c:forEach var="i" begin="1" end="${pageBean.totalPage}" >
+                    <li>
+                        <c:if test="${pageBean.currentPage == i}">
+                            <a style="color: red" href="${pageContext.request.contextPath}/findUserByPagesServlet?currentPage=${i}&rows=${pageBean.rows}">${i}</a>
+                        </c:if>
+                        <c:if test="${pageBean.currentPage!=i}">
+                            <a href="${pageContext.request.contextPath}/findUserByPagesServlet?currentPage=${i}&rows=${pageBean.rows}">${i}</a>
+                        </c:if>
+                    </li>
                 </c:forEach>
 
-<%--                <li><a href="#">2</a></li>--%>
-<%--                <li><a href="#">3</a></li>--%>
-<%--                <li><a href="#">4</a></li>--%>
-<%--                <li><a href="#">5</a></li>--%>
                 <li>
                     <a href="#" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>

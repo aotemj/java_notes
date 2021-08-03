@@ -24,7 +24,7 @@ public class PageBean<T> {
     //    每页的数据
     private List<T> list;
     //    每页显示的记录数
-    private int rows;
+    private int rows = 5;
 
     public int findTotalCount() {
         return totalCount;
