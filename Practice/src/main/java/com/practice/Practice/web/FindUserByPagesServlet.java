@@ -9,6 +9,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * 分页查询
@@ -28,9 +29,12 @@ public class FindUserByPagesServlet extends HttpServlet {
 //        接受请求参数 currentPage, rows
 //        当前页码
         int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+        Map<String, String[]> parameterMap = request.getParameterMap();
+
         //调用Service查询PageBean
-        PageBean<User> pb = service.getUserByPages(currentPage);
-        System.out.println(pb);
+        PageBean<User> pb = service.getUserByPages(currentPage,parameterMap);
+
+
         //将PageBean 存入 request
         request.setAttribute("pageBean", pb);
         //转发list.jsp 展示

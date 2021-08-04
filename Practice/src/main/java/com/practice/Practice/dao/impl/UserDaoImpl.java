@@ -93,7 +93,7 @@ public class UserDaoImpl implements UserDao {
                 values.add(value);
             }
         }
-        System.out.println("sql = " + sb);
+        System.out.println("sql = " + sb + ", values=" + values);
         try {
             return template.query(sql, new BeanPropertyRowMapper<User>(User.class), values);
         } catch (Exception e) {
@@ -105,24 +105,25 @@ public class UserDaoImpl implements UserDao {
     /**
      * 分页获取用户信息
      *
-     * @param currentPage 当前页码
-     * @param rows        每页数据
+     * @param currentPage  当前页码
+     * @param parameterMap
      * @return
      */
     @Override
-    public PageBean<User> findUsersByPage(int currentPage) {
+    public PageBean<User> findUsersByPage(int currentPage, Map<String, String[]> parameterMap) {
 //        创建空的PageBean 对象
         PageBean pb = new PageBean();
         int rows = pb.getRows();
 //        设置当前页面属性和rows属性
         pb.setCurrentPage(currentPage);
 //        调用dao查询totalCount 总记录数 dao.findTotalCount();
-        int totalCount = this.findTotalCount();
+
+        int totalCount = this.findTotalCount(parameterMap);
         pb.setTotalCount(totalCount);
 //        start = (currentPage -1) * rows
         int start = (currentPage - 1) * rows;
 //        调用dao查询list集合 dao.findByPage(int start, int rows);
-        List<User> list = this.findByPage(start, rows);
+        List<User> list = this.findByPage(start, rows, parameterMap);
         pb.setList(list);
 //        计算总页码
         int totalPage = ((totalCount % rows) == 0) ? (totalCount / rows) : (int) (totalCount / rows) + 1;
@@ -133,12 +134,28 @@ public class UserDaoImpl implements UserDao {
     /**
      * 获取所有记录数
      *
+     * @param parameterMap
      * @return
      */
     @Override
-    public int findTotalCount() {
-        String sql = "select count(*) from user";
-        return template.queryForObject(sql, Integer.class);
+    public int findTotalCount(Map<String, String[]> parameterMap) {
+        String sql = "select count(*) from user where 1 = 1 ";
+        StringBuilder sb = new StringBuilder(sql);
+        Set<String> conditions = parameterMap.keySet();
+        List<String> values = new ArrayList<>();
+        for (String condition : conditions) {
+            String value = parameterMap.get(condition)[0];
+            if (condition.equals("currentPage")) {
+                continue;
+            }
+            if (!"".equals(value)) {
+                sb.append(" and " + condition + " like ? ");
+                values.add(value);
+            }
+
+        }
+
+        return template.queryForObject(sb.toString(), Integer.class, values.toArray());
     }
 
     /**
@@ -146,12 +163,28 @@ public class UserDaoImpl implements UserDao {
      *
      * @param start
      * @param rows
+     * @param parameterMap
      * @return
      */
-    public List<User> findByPage(int start, int rows) {
-        String sql = "select * from user limit ?,?";
+    public List<User> findByPage(int start, int rows, Map<String, String[]> parameterMap) {
+        String sql = "select * from user limit ?,? where 1 =1 ";
+        StringBuilder sb = new StringBuilder(sql);
+        Set<String> conditions = parameterMap.keySet();
+        List<String> values = new ArrayList<>();
+        for (String condition : conditions) {
+            if (condition.equals("start") || condition.equals("rows")) {
+                continue;
+            }
+
+            String value = parameterMap.get(condition)[0];
+            if (!"".equals(value)) {
+                sb.append(" and " + condition + " like ? ");
+                values.add(value);
+            }
+        }
+
         try {
-            List<User> query = template.query(sql, new BeanPropertyRowMapper<>(User.class), start, rows);
+            List<User> query = template.query(sql, new BeanPropertyRowMapper<>(User.class), start, rows,values.toArray());
             return query;
         } catch (Exception e) {
             e.printStackTrace();

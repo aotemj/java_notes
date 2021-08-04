@@ -36,7 +36,8 @@
 
     <div style="float: left;">
 
-        <form class="form-inline" action="${pageContext.request.contextPath}/conditionSearchServlet">
+        <form class="form-inline" action="${pageContext.request.contextPath}/findUserByPagesServlet">
+            <input type="hidden" name="currentPage" value="${pageBean.currentPage}">
             <div class="form-group">
                 <label for="exampleInputName2">姓名</label>
                 <input type="text" class="form-control" id="exampleInputName2" name="name">

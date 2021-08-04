@@ -24,7 +24,7 @@ public interface UserDao {
 
     public List<User> searchByCondition(Map<String, String[]> parameterMap);
 
-    public PageBean<User> findUsersByPage(int currentPage);
+    public PageBean<User> findUsersByPage(int currentPage, Map<String, String[]> parameterMap);
 
-    public int findTotalCount();
+    public int findTotalCount(Map<String, String[]> parameterMap);
 }

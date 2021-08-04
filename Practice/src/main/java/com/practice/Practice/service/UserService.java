@@ -63,8 +63,9 @@ public interface UserService {
     /**
      * 分页获取用户
      * @param currentPage
+     * @param parameterMap
      */
-    public PageBean<User> getUserByPages(int currentPage);
+    public PageBean<User> getUserByPages(int currentPage, Map<String, String[]> parameterMap);
 
     /**
      * 根据条件查询信息

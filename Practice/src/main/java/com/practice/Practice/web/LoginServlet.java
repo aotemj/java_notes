@@ -34,8 +34,6 @@ public class LoginServlet extends HttpServlet {
         if (checkCode.equalsIgnoreCase(checked_server)) {
             String username = (String) request.getParameter("username");
             String password = (String) request.getParameter("password");
-            System.out.println(username);
-            System.out.println(password);
 //            验证登录操作
             UserService service = new UserServiceImpl();
             User user = service.findUserByUsernameAndPassword(username, password);
