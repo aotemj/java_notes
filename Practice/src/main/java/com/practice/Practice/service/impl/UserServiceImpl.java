@@ -56,9 +56,4 @@ public class UserServiceImpl implements UserService {
     public PageBean<User> getUserByPages(int currentPage, Map<String, String[]> parameterMap) {
         return userDao.findUsersByPage(currentPage,parameterMap);
     }
-
-    @Override
-    public List<User> searchByCondition(Map<String, String[]> parameterMap) {
-        return userDao.searchByCondition(parameterMap);
-    }
 }

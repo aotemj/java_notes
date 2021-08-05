@@ -36,7 +36,7 @@
 
     <div style="float: left;">
 
-        <form class="form-inline" action="${pageContext.request.contextPath}/findUserByPagesServlet">
+        <form class="form-inline" action="${pageContext.request.contextPath}/findUserByPagesServlet" method="post">
             <input type="hidden" name="currentPage" value="${pageBean.currentPage}">
             <div class="form-group">
                 <label for="exampleInputName2">姓名</label>
@@ -125,7 +125,7 @@
                     </a>
                 </li>
                 <span style="font-size: 25px;margin-left: 5px;">
-                    共16条记录，共4页
+                    共${pageBean.totalCount}条记录，共${pageBean.totalPage}页
                 </span>
 
             </ul>

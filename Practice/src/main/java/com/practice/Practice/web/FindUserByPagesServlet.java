@@ -34,7 +34,6 @@ public class FindUserByPagesServlet extends HttpServlet {
         //调用Service查询PageBean
         PageBean<User> pb = service.getUserByPages(currentPage,parameterMap);
 
-
         //将PageBean 存入 request
         request.setAttribute("pageBean", pb);
         //转发list.jsp 展示

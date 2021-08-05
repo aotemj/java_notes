@@ -76,32 +76,6 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    @Override
-    public List<User> searchByCondition(Map<String, String[]> parameterMap) {
-//        TODO 待优化项
-        String sql = "select * from user where 1=1";
-
-        StringBuilder sb = new StringBuilder(sql);
-
-        Set<String> keys = parameterMap.keySet();
-
-        List<String> values = new ArrayList();
-        for (String key : keys) {
-            String value = parameterMap.get(key)[0];
-            if (!"".equals(value)) {
-                sb.append(" and " + key + " like ? ");
-                values.add(value);
-            }
-        }
-        System.out.println("sql = " + sb + ", values=" + values);
-        try {
-            return template.query(sql, new BeanPropertyRowMapper<User>(User.class), values);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     /**
      * 分页获取用户信息
      *
@@ -145,12 +119,12 @@ public class UserDaoImpl implements UserDao {
         List<String> values = new ArrayList<>();
         for (String condition : conditions) {
             String value = parameterMap.get(condition)[0];
-            if (condition.equals("currentPage")) {
+            if (condition.equals("currentPage") || condition.equals("rows")) {
                 continue;
             }
             if (!"".equals(value)) {
                 sb.append(" and " + condition + " like ? ");
-                values.add(value);
+                values.add("%"+value+"%");
             }
 
         }
@@ -167,24 +141,26 @@ public class UserDaoImpl implements UserDao {
      * @return
      */
     public List<User> findByPage(int start, int rows, Map<String, String[]> parameterMap) {
-        String sql = "select * from user limit ?,? where 1 =1 ";
+        String sql = "select * from user where 1 = 1 ";
         StringBuilder sb = new StringBuilder(sql);
         Set<String> conditions = parameterMap.keySet();
-        List<String> values = new ArrayList<>();
+        List<Object> values = new ArrayList<>();
         for (String condition : conditions) {
-            if (condition.equals("start") || condition.equals("rows")) {
+            if (condition.equals("start") || condition.equals("rows")||condition.equals("currentPage")) {
                 continue;
             }
 
             String value = parameterMap.get(condition)[0];
             if (!"".equals(value)) {
                 sb.append(" and " + condition + " like ? ");
-                values.add(value);
+                values.add("%"+value+"%");
             }
         }
-
+        sb.append(" limit ? , ? ");
+        values.add(start);
+        values.add(rows);
         try {
-            List<User> query = template.query(sql, new BeanPropertyRowMapper<>(User.class), start, rows,values.toArray());
+            List<User> query = template.query(sb.toString(), new BeanPropertyRowMapper<>(User.class),values.toArray());
             return query;
         } catch (Exception e) {
             e.printStackTrace();

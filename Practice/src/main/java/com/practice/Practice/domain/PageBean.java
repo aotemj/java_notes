@@ -3,6 +3,10 @@ package com.practice.Practice.domain;
 import java.util.List;
 
 public class PageBean<T> {
+    public int getTotalCount() {
+        return totalCount;
+    }
+
     //    总记录数
     private int totalCount;
     //    总页数
@@ -26,9 +30,6 @@ public class PageBean<T> {
     //    每页显示的记录数
     private int rows = 5;
 
-    public int findTotalCount() {
-        return totalCount;
-    }
 
     public void setTotalCount(int totalCount) {
         this.totalCount = totalCount;

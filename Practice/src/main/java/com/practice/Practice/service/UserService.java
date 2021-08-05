@@ -66,10 +66,4 @@ public interface UserService {
      * @param parameterMap
      */
     public PageBean<User> getUserByPages(int currentPage, Map<String, String[]> parameterMap);
-
-    /**
-     * 根据条件查询信息
-     * @return
-     */
-    public List<User> searchByCondition(Map<String, String[]> parameterMap);
 }
