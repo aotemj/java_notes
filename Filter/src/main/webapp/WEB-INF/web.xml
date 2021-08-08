@@ -9,6 +9,17 @@
         <!--   filter 对应包路径     -->
         <filter-class>com.filter.Filter.FilterDemo</filter-class>
     </filter>
+    <filter>
+        <filter-name>demo2</filter-name>
+
+        <filter-class>com.filter.Filter.FilterDemo5</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>demo2</filter-name>
+        <url-pattern>*</url-pattern>
+        <!--  设置当前配置的命中方式      -->
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
     <filter-mapping>
         <!--   filter名称     -->
         <filter-name>demo1</filter-name>
