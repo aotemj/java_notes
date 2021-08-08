@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter("/*") // *: 通配符, 表示所有的资源在被访问的时候都会经过当前过滤器
+//@WebFilter("/*") // *: 通配符, 表示所有的资源在被访问的时候都会经过当前过滤器
 public class FilterDemo implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
