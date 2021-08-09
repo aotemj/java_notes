@@ -22,7 +22,7 @@ public interface UserDao {
 
     public User getUserById(int id);
 
-    public PageBean<User> findUsersByPage(int currentPage, Map<String, String[]> parameterMap);
+    public PageBean<User> findUsersByPage(String currentPage, Map<String, String[]> parameterMap);
 
     public int findTotalCount(Map<String, String[]> parameterMap);
 }

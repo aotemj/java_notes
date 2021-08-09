@@ -28,7 +28,7 @@ public class FindUserByPagesServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
 //        接受请求参数 currentPage, rows
 //        当前页码
-        int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+         String currentPage = request.getParameter("currentPage") ;
         Map<String, String[]> parameterMap = request.getParameterMap();
 
         //调用Service查询PageBean

@@ -40,6 +40,7 @@ public class LoginServlet extends HttpServlet {
             if (user != null) {
 //                登录成功
                 request.setAttribute("login_msg", username + "欢迎您");
+                session.setAttribute("user", user);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
 //                登录失败

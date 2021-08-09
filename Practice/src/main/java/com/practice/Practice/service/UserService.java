@@ -65,5 +65,5 @@ public interface UserService {
      * @param currentPage
      * @param parameterMap
      */
-    public PageBean<User> getUserByPages(int currentPage, Map<String, String[]> parameterMap);
+    public PageBean<User> getUserByPages(String currentPage, Map<String, String[]> parameterMap);
 }

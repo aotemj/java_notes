@@ -79,15 +79,16 @@ public class UserDaoImpl implements UserDao {
     /**
      * 分页获取用户信息
      *
-     * @param currentPage  当前页码
+     * @param currentPage1  当前页码
      * @param parameterMap
      * @return
      */
     @Override
-    public PageBean<User> findUsersByPage(int currentPage, Map<String, String[]> parameterMap) {
+    public PageBean<User> findUsersByPage(String currentPage1, Map<String, String[]> parameterMap) {
 //        创建空的PageBean 对象
         PageBean pb = new PageBean();
         int rows = pb.getRows();
+        int currentPage = Integer.parseInt(currentPage1) | 1;
 //        设置当前页面属性和rows属性
         pb.setCurrentPage(currentPage);
 //        调用dao查询totalCount 总记录数 dao.findTotalCount();
@@ -124,7 +125,7 @@ public class UserDaoImpl implements UserDao {
             }
             if (!"".equals(value)) {
                 sb.append(" and " + condition + " like ? ");
-                values.add("%"+value+"%");
+                values.add("%" + value + "%");
             }
 
         }
@@ -146,21 +147,21 @@ public class UserDaoImpl implements UserDao {
         Set<String> conditions = parameterMap.keySet();
         List<Object> values = new ArrayList<>();
         for (String condition : conditions) {
-            if (condition.equals("start") || condition.equals("rows")||condition.equals("currentPage")) {
+            if (condition.equals("start") || condition.equals("rows") || condition.equals("currentPage")) {
                 continue;
             }
 
             String value = parameterMap.get(condition)[0];
             if (!"".equals(value)) {
                 sb.append(" and " + condition + " like ? ");
-                values.add("%"+value+"%");
+                values.add("%" + value + "%");
             }
         }
         sb.append(" limit ? , ? ");
         values.add(start);
         values.add(rows);
         try {
-            List<User> query = template.query(sb.toString(), new BeanPropertyRowMapper<>(User.class),values.toArray());
+            List<User> query = template.query(sb.toString(), new BeanPropertyRowMapper<>(User.class), values.toArray());
             return query;
         } catch (Exception e) {
             e.printStackTrace();
