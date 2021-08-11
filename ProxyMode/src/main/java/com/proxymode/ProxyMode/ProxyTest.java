@@ -25,7 +25,17 @@ public class ProxyTest {
                 System.out.println("当前方法执行了");
                 System.out.println(method.getName());
                 System.out.println(args[0]);
-                return null;
+                if (method.getName().equals("sale")) {
+                    //                增强参数：
+                    double money = (double) args[0];
+                    money *= 0.85;
+                    Object obj = method.invoke(l, money);
+                    return obj;
+                } else {
+//                使用真实参数调用该方法：
+                    Object obj = method.invoke(l, args);
+                    return obj;
+                }
             }
         });
         proxyObject.sale(8000);
