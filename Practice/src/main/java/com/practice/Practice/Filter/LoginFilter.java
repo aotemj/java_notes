@@ -5,7 +5,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter(value = "/*")
+//@WebFilter(value = "/*")
+@WebFilter(value = "/test")
 public class LoginFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -16,7 +17,7 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request1 = (HttpServletRequest) request;
         String requestURI = request1.getRequestURI();
-        System.out.println("loginFilter触发");
+//        System.out.println("loginFilter触发");
         if (
                 requestURI.contains("login.jsp") ||
                         requestURI.contains("loginServlet") ||
