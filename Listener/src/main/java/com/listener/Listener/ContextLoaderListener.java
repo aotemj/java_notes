@@ -3,9 +3,11 @@ package com.listener.Listener;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+@WebListener
 public class ContextLoaderListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
